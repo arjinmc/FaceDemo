@@ -11,4 +11,4 @@ Having this fuctions:
 
 3.delete face icons. 
 
-![image](https://github.com/arjinmc/FaceDemo/demo_image.png)
+![image](https://github.com/arjinmc/FaceDemo/master/demo_image.png)
