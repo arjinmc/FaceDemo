@@ -10,3 +10,5 @@ Having this fuctions:
 2.copy and paste face icons; 
 
 3.delete face icons. 
+
+![image](https://github.com/arjinmc/FaceDemo/demo_image.png)
