@@ -3,7 +3,7 @@ FaceDemo
 
 A demo for using face when im or add comment.
 
-Having this fuctions:
+Having these fuctions:
 
 1.click a face icon and show it; 
 
