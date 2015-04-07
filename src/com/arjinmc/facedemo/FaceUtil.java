@@ -15,6 +15,8 @@ import java.util.regex.Pattern;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ImageSpan;
@@ -172,7 +174,32 @@ public class FaceUtil {
 					// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-	        ImageSpan imageSpan = new ImageSpan(bitmap);				
+			
+			/**
+			 * 因为每一个款式手机的TextView在选软的时候存在一些差异，所以需要做一下适配.
+			 * 下面的是这对渲染出来的图片大小再做一次缩放，再根据具体的需求再调整
+			 */
+			Drawable drawable = new BitmapDrawable(null, bitmap);
+			int drawableWidth= drawable.getIntrinsicWidth();
+	        float drawableLevel = drawableWidth/10;
+	        if(drawableLevel<=1){
+	        	drawableLevel=4;
+	        }else if(drawableLevel<=2){
+	        	drawableLevel=3;
+	        }else if(drawableLevel<=3){
+	        	drawableLevel=1;
+	        }else if(drawableLevel<=4){
+	        	drawableLevel=0.8f;
+	        }else if(drawableLevel<=5){
+	        	drawableLevel=0.6f;
+	        }else if(drawableLevel<=6){
+	        	drawableLevel=0.4f;
+	        }
+	        drawable.setBounds(0, 0, (int)(drawableWidth*drawableLevel)
+        			, (int)(drawableWidth*drawableLevel));
+			
+	        //记得这个地方要我们经过调整过后的drawable对象
+	        ImageSpan imageSpan = new ImageSpan(drawable);				
 	        int end = matcher.start() + key.length();					
 	        spannableString.setSpan(imageSpan, matcher.start(), end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 	        if (end < spannableString.length()) {
